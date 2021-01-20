@@ -53,7 +53,7 @@ function App() {
               id='navbarSupportedContent'
             >
               <ul className='navbar-nav mr-auto'>
-                <li className='nav-item active'>
+                <li className='nav-item '>
                   <Link className='nav-link' to='/add'>
                     Add Post
                   </Link>
