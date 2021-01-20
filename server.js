@@ -14,9 +14,6 @@ var app = express();
 
 const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
-server.listen(PORT, () => {
-  console.log("listening to port:", PORT);
-});
 
 //make connection to db
 mongoose.connect(process.env.MONGODB_URI, {
@@ -41,7 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.static(path.join(__dirname, "client", "build")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
@@ -59,6 +56,14 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+server.listen(PORT, () => {
+  console.log("listening to port:", PORT);
 });
 
 module.exports = app;
