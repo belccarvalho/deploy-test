@@ -58,8 +58,8 @@ function App() {
                     Add Post
                   </Link>
                 </li>
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/get' onClick={getPosts}>
+                <li className='nav-item' onClick={getPosts}>
+                  <Link className='nav-link' to='/get'>
                     Get Post
                   </Link>
                 </li>
