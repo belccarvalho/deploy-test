@@ -1,18 +1,34 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Add from "./Add";
+import Posts from "./Posts";
 import "./App.css";
 import appContext from "./context";
-
+import axios from "axios";
 function App() {
   const [newPost, setNewPost] = useState({});
+  const [postList, setPostList] = useState([]);
 
+  const getPosts = (e) => {
+    e.preventDefault();
+    axios({
+      method: "GET",
+      url: "users/get",
+    })
+      .then((res) => {
+        setPostList(res.data);
+      })
+      .catch((err) => {
+        console.log("error:", err);
+      });
+  };
   return (
     <div>
       <appContext.Provider
         value={{
           newPost,
           setNewPost,
+          postList,
         }}
       >
         <Router>
@@ -43,7 +59,7 @@ function App() {
                   </Link>
                 </li>
                 <li className='nav-item'>
-                  <Link className='nav-link' to='/get'>
+                  <Link className='nav-link' to='/get' onClick={getPosts}>
                     Get Post
                   </Link>
                 </li>
@@ -82,7 +98,9 @@ function App() {
             <Route path='/add'>
               <Add />{" "}
             </Route>
-            <Route path='/get'></Route>
+            <Route path='/get'>
+              <Posts />
+            </Route>
           </Switch>
         </Router>
       </appContext.Provider>

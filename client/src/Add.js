@@ -11,7 +11,7 @@ export default function Add() {
     e.preventDefault();
     axios({
       method: "POST",
-      url: "/users/add",
+      url: "users/add",
       data: newPost,
     })
       .then((res) => {
