@@ -4,7 +4,7 @@ let mongoose = require("mongoose");
 let UserSchema = new mongoose.Schema({
   //objects as parameters with structure
   name: { type: String, required: true },
-  job: { type: String, required: true },
+  hobby: { type: String, required: true },
 });
 
 //compile Schema to a model

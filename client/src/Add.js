@@ -22,7 +22,7 @@ export default function Add() {
       });
   };
   return (
-    <div className='container mt-5'>
+    <div className='container mt-4'>
       <form onSubmit={addPost}>
         <div className='mb-3'>
           <label htmlFor='exampleInputEmail1' className='form-label'>
